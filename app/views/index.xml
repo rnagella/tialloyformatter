@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Alloy>
+  <Window class="container" layout="vertical">
+    <Label backgroundColor="transparent" color="red" id="label" onClick="doClick" top="20dip">Hello, World</Label>
+    <Label color="red" id="formatter">Hello, formatter</Label>
+  </Window>
+</Alloy>
