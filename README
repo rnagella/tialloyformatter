@@ -1,4 +1,6 @@
 Summary
 
-tialloyformatter - format the alloy xml code in alphabetical order.
+tialloyformatter - format the alloy xml code in alphabetical ascending order.
 It's built on top of the xml2js node module.
+
+execution - node xmlformatter

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Alloy>
+  <Window class="container" layout="vertical">
+    <Label backgroundColor="transparent" color="blue" id="label" top="20dip"> This is tialloyformatter</Label>
+    <Label color="red" id="formatter">How is it ?</Label>
+  </Window>
+</Alloy>

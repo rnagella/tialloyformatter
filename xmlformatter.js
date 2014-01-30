@@ -4,6 +4,10 @@ regexp: false, sub: false, vars: false, undef: false, unused: false,
 white: false, quotmark: single, indent: 2, maxlen: 80 */
 
 'use strict';
+
+// node built in libraries.
+var stdin = process.openStdin();
+
 // node libraries
 var fs = require('fs');
 // node modules
@@ -35,11 +39,31 @@ function traverse(jsonData) {
 
 // onload function
 (function () {
-  var files, xmlData;
+  var files, xmlfiles, xmlData;
 
-  files = fs.readdirSync(viewPath);
-  xmlData = fs.readFileSync(viewPath + '/' + files[0], {'encoding' : 'utf8'});
-  xml2js.parseString(xmlData,
+  xmlfiles = fs.readdirSync(viewPath);
+  console.log(files);
+
+  /*fs.readFileSync(viewPath + '/' + files[0],
+      {'encoding' : 'utf8'});*/
+
+  _.each(xmlfiles, function (xmlfile) {
+
+    xmlData = fs.readFileSync(viewPath + '/' + xmlfile,
+      {'encoding' : 'utf8'});
+
+    xml2js.parseString(xmlData, function (err, jsonData) {
+
+      var builder, json2xml, jsonFormattedData = traverse(jsonData);
+
+      builder = new xml2js.Builder();
+      json2xml = builder.buildObject(jsonFormattedData);
+      fs.writeFileSync(viewPath + '/' + xmlfile, json2xml);
+      console.log('formatted xml. Beautiful right :)' + xmlfile);
+    });
+  });
+
+  /*xml2js.parseString(xmlData,
     function (err, jsonData) {
 
     var builder, json2xml, jsonFormattedData = traverse(jsonData);
@@ -48,5 +72,5 @@ function traverse(jsonData) {
     json2xml = builder.buildObject(jsonFormattedData);
     fs.writeFileSync(viewPath + '/' + files[0], json2xml);
     console.log('formatted xml. Beautiful right :)');
-  });
+  });*/
 }());
